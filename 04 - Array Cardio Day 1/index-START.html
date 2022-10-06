@@ -122,7 +122,6 @@
         const [personTwoLastName, personTwoFirstName] = personTwo.split(", ");
         personOneLastName > personTwoLastName ? 1 : -1;
       });
-      console.table(sorted_by_last_name);
 
       // 8. Reduce Exercise
       // Sum up the instances of each of these
@@ -142,6 +141,17 @@
         "car",
         "truck",
       ];
+
+      const initialValues = {};
+      const transport = data.reduce((count, type) => {
+        if (!count[type]) {
+          count[type] = 0;
+        }
+        count[type]++;
+        return count;
+      }, initialValues);
+
+      console.log(transport);
     </script>
   </body>
 </html>
