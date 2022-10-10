@@ -52,7 +52,6 @@
         justify-content: center;
         align-items: center;
         display: flex;
-        border: 1px solid red;
         flex-direction: column;
       }
 
@@ -77,7 +76,6 @@
         margin: 0;
         width: 100%;
         transition: transform 0.5s;
-        border: 1px solid red;
         flex: 1 0 auto;
         display: flex;
         justify-content: center;
@@ -113,6 +111,7 @@
 
       .panel.open {
         font-size: 40px;
+        flex: 5;
       }
     </style>
 
@@ -144,6 +143,24 @@
       </div>
     </div>
 
-    <script></script>
+    <script>
+      const panels = document.querySelectorAll(".panel");
+
+      function toggleOpen() {
+        this.classList.toggle("open");
+      }
+
+      function toggleActive(event) {
+        if (event.propertyName.includes("flex")) {
+          console.log(event);
+          this.classList.toggle("open-active");
+        }
+      }
+
+      panels.forEach((panel) => panel.addEventListener("click", toggleOpen));
+      panels.forEach((panel) =>
+        panel.addEventListener("transitionend", toggleActive)
+      );
+    </script>
   </body>
 </html>
